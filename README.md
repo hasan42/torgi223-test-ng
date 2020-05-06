@@ -1,27 +1,16 @@
 # Comments
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
+на Angular 8 сделать приложение которое динамически выводит древовидные комментарии в качестве структуры комментариев можно использовать статические json файл но он должен быть получен с помошью GET запроса. (можно использовать Mock)
 
-## Development server
+Структура Комментария  
+• id  
+• parent_id  
+• date time  
+• author_name  
+• body
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Комментарии должны отображатся с отсутпом по уровню вложенности, уровень вложенности не ограничен, но после 3 уровня вложности можно необращать внимания на верстку элементов.  
+На каждый комментарий можно добавить ответ. (комментарии можно хранить в localStorage либо еще где то на ваш выбор)  
+Можно использовать любой удобный генератор тестовых данных чтобы сгенерировать комментарии.  
+В качестве фреймворка нужно использовать bootstrap4.  
+Результаты задания должны быть выложены на github
