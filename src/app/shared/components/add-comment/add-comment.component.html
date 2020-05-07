@@ -1,1 +1,27 @@
-<p>add-comment works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label for="author">Автор</label>
+    <input type="text" id="author" formControlName="author">
+    <div
+      *ngIf="form.get('author').touched && form.get('author').invalid"
+      class="validation">
+      <small *ngIf="form.get('author').errors.required">
+        Введите имя автора
+      </small>
+    </div>
+  </div>
+  <div>
+    <label for="text">Текст</label>
+    <input type="text" id="text" formControlName="text">
+    <div
+      *ngIf="form.get('text').touched && form.get('text').invalid"
+      class="validation">
+      <small *ngIf="form.get('text').errors.required">
+        Введите текст комментария
+      </small>
+    </div>
+  </div>
+  <div>
+    <button type="submit" [disabled]="form.invalid || submitted">Добавить</button>
+  </div>
+</form>
