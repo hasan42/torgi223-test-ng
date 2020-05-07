@@ -1,27 +1,45 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <div>
-    <label for="author">Автор</label>
-    <input type="text" id="author" formControlName="author">
-    <div
-      *ngIf="form.get('author').touched && form.get('author').invalid"
-      class="validation">
-      <small *ngIf="form.get('author').errors.required">
-        Введите имя автора
-      </small>
+<form class="mt-3 mb-5" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-row align-items-end">
+    <div class="col">
+      <label for="author">Автор</label>
+      <input class="form-control" 
+              type="text" 
+              id="author" 
+              formControlName="author" 
+              [class.is-invalid]="form.get('author').touched && form.get('author').invalid">
+    </div>
+    <div class="col">
+      <label for="text">Текст</label>
+      <input class="form-control" 
+              type="text" 
+              id="text" 
+              formControlName="text"
+              [class.is-invalid]="form.get('text').touched && form.get('text').invalid">
+    </div>
+    <div class="col">
+        <button type="submit" [disabled]="form.invalid || submitted" class="btn btn-primary align-bottom">Ответить</button>
     </div>
   </div>
-  <div>
-    <label for="text">Текст</label>
-    <input type="text" id="text" formControlName="text">
-    <div
-      *ngIf="form.get('text').touched && form.get('text').invalid"
-      class="validation">
-      <small *ngIf="form.get('text').errors.required">
-        Введите текст комментария
-      </small>
+  <div class="form-row">
+    <div class="col">
+      <div
+        *ngIf="form.get('author').touched && form.get('author').invalid"
+        class="text-danger">
+        <small *ngIf="form.get('author').errors.required">
+          Введите имя автора
+        </small>
+      </div>
     </div>
+    <div class="col">
+      <div
+        *ngIf="form.get('text').touched && form.get('text').invalid"
+        class="text-danger">
+        <small *ngIf="form.get('text').errors.required">
+          Введите текст комментария
+        </small>
+      </div>
+    </div>
+    <div class="col"></div>
   </div>
-  <div>
-    <button type="submit" [disabled]="form.invalid || submitted">Добавить</button>
-  </div>
+  
 </form>

@@ -1,9 +1,10 @@
 <div class="media mt-3">
   <img src="https://dummyimage.com/64x64/ccc/000" class="mr-3" alt="...">
   <div class="media-body">
-    <h5 class="mt-0">{{comment.authorName}}</h5>
+    <h5 class="mt-0">{{comment.authorName}} <small class="text-secondary">{{comment.dateTime | date:'dd MMMM yyy, HH:mm:ss':null:'ru'}}</small></h5>
+    
     <p>{{comment.body}}</p>
-    <a (click)="reply()">Ответить</a>
+    <a href="#" class="text-primary" (click)="reply()">Ответить</a>
     <ng-template appRef></ng-template>
     <app-list-comments [parentId]="comment.id"></app-list-comments>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CommentsService } from '../../services/comments.service';
 import { Observable, Subscription } from 'rxjs';
 import { Comment } from '../../interfaces';
@@ -8,7 +8,7 @@ import { Comment } from '../../interfaces';
   templateUrl: './list-comments.component.html',
   styleUrls: ['./list-comments.component.scss']
 })
-export class ListCommentsComponent implements OnInit {
+export class ListCommentsComponent implements OnInit, OnDestroy {
 
   @Input() parentId: string = null;
 
@@ -35,7 +35,11 @@ export class ListCommentsComponent implements OnInit {
         error => console.log(error)
       );
     }
-
+  }
+  ngOnDestroy() {
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
   }
 
 }

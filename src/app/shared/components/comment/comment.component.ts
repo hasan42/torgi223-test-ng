@@ -14,12 +14,21 @@ export class CommentComponent implements OnInit {
   @Input() comment: Comment;
   @ViewChild(RefDirective, {static: false}) refDir: RefDirective
 
+  isReply: boolean = false
+
   constructor(private resolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
   }
 
   reply() {
+    event.preventDefault()
+    if(this.isReply){
+      this.refDir.containerRef.clear()
+      this.isReply = !this.isReply
+      return
+    }
+    this.isReply = !this.isReply
     const replyFactory = this.resolver.resolveComponentFactory(AddCommentComponent)
     this.refDir.containerRef.clear()
 
