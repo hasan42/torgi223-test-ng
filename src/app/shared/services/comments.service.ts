@@ -42,7 +42,6 @@ export class CommentsService {
           }))
       })).subscribe(resp=>{
         this.comments = resp
-        // this.observableComments.next(resp.filter(comment=>!comment.parentId));
         this.observableComments.next(this.comments);
       });
   }
