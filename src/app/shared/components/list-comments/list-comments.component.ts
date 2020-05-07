@@ -22,13 +22,20 @@ export class ListCommentsComponent implements OnInit {
     if(this.parentId === null){
       this.subscription = this.serv.comments$.subscribe(
         value => {
-          this.comments = value;
+          this.comments = value.filter(comments=>!comments.parentId);
         },
         error => console.log(error)
       );
     }else{
-      this.comments = this.serv.getById(this.parentId);
+      // this.comments = this.serv.getById(this.parentId);
+      this.subscription = this.serv.comments$.subscribe(
+        value => {
+          this.comments = value.filter(comments=>comments.parentId===this.parentId);
+        },
+        error => console.log(error)
+      );
     }
+
   }
 
 }

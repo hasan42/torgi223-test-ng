@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommentsService } from '../../services/comments.service';
 import { Comment } from '../../interfaces';
@@ -13,6 +13,7 @@ import {Subscription} from 'rxjs';
 export class AddCommentComponent implements OnInit {
 
   @Input() parentId:string;
+  @Output() close = new EventEmitter<void>()
 
   form: FormGroup
   submitted = false
@@ -42,6 +43,9 @@ export class AddCommentComponent implements OnInit {
     this.serv.addComment(comment).subscribe((resp) => {
       this.form.reset()
       this.submitted = true
+      if(this.parentId){
+        this.close.emit()
+      }
     })
   }
 

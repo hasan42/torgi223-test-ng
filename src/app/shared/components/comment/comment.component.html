@@ -2,8 +2,9 @@
   <img src="https://dummyimage.com/64x64/ccc/000" class="mr-3" alt="...">
   <div class="media-body">
     <h5 class="mt-0">{{comment.authorName}}</h5>
-    {{comment.body}}
-
+    <p>{{comment.body}}</p>
+    <a (click)="reply()">Ответить</a>
+    <ng-template appRef></ng-template>
     <app-list-comments [parentId]="comment.id"></app-list-comments>
   </div>
 </div>

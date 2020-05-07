@@ -25,6 +25,7 @@ export class CommentsService {
           dateTime: new Date(comment.dateTime)
         }
         this.comments.push(newComment)
+        this.observableComments.next(this.comments);
         return newComment;
       }))
   }
@@ -41,7 +42,8 @@ export class CommentsService {
           }))
       })).subscribe(resp=>{
         this.comments = resp
-        this.observableComments.next(resp.filter(comment=>!comment.parentId));
+        // this.observableComments.next(resp.filter(comment=>!comment.parentId));
+        this.observableComments.next(this.comments);
       });
   }
 

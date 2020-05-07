@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ComponentFactoryResolver, ViewChild } from '@angular/core';
+import { AddCommentComponent } from '../add-comment/add-comment.component'
 import { Comment } from '../../interfaces';
+import { RefDirective } from '../../directives/ref.directive'
+
 
 @Component({
   selector: 'app-comment',
@@ -9,10 +12,23 @@ import { Comment } from '../../interfaces';
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
+  @ViewChild(RefDirective, {static: false}) refDir: RefDirective
 
-  constructor() { }
+  constructor(private resolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
+  }
+
+  reply() {
+    const replyFactory = this.resolver.resolveComponentFactory(AddCommentComponent)
+    this.refDir.containerRef.clear()
+
+    const component = this.refDir.containerRef.createComponent(replyFactory)
+
+    component.instance.parentId = this.comment.id
+    component.instance.close.subscribe(() => {
+      this.refDir.containerRef.clear()
+    })
   }
 
 }
