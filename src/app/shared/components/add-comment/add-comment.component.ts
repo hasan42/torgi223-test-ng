@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommentsService } from '../../services/comments.service';
+import { AlertService } from '../../services/alert.service';
 import { Comment } from '../../interfaces';
 import {Subscription} from 'rxjs';
 
@@ -18,7 +19,7 @@ export class AddCommentComponent implements OnInit {
   form: FormGroup
   submitted = false
 
-  constructor(private serv: CommentsService,) { }
+  constructor(private serv: CommentsService,private alert: AlertService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -43,6 +44,7 @@ export class AddCommentComponent implements OnInit {
     this.serv.addComment(comment).subscribe((resp) => {
       this.form.reset()
       this.submitted = true
+      this.alert.callAlert('Комментарий добавлен')
       if(this.parentId){
         this.close.emit()
       }

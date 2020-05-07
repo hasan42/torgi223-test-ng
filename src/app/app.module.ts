@@ -10,6 +10,7 @@ import { CommentComponent } from './shared/components/comment/comment.component'
 import { AddCommentComponent } from './shared/components/add-comment/add-comment.component';
 import { ListCommentsComponent } from './shared/components/list-comments/list-comments.component';
 import { RefDirective } from './shared/directives/ref.directive';
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 registerLocaleData(ruLocale, 'ru');
 
@@ -19,7 +20,8 @@ registerLocaleData(ruLocale, 'ru');
     CommentComponent,
     AddCommentComponent,
     ListCommentsComponent,
-    RefDirective
+    RefDirective,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
