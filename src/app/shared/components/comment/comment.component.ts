@@ -36,6 +36,7 @@ export class CommentComponent implements OnInit {
 
     component.instance.parentId = this.comment.id
     component.instance.close.subscribe(() => {
+      this.isReply = false
       this.refDir.containerRef.clear()
     })
   }

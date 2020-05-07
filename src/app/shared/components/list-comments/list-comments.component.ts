@@ -12,7 +12,6 @@ export class ListCommentsComponent implements OnInit, OnDestroy {
 
   @Input() parentId: string = null;
 
-  comments$: Observable<Comment[]>
   comments:Comment[]
   subscription: Subscription
 
@@ -27,7 +26,6 @@ export class ListCommentsComponent implements OnInit, OnDestroy {
         error => console.log(error)
       );
     }else{
-      // this.comments = this.serv.getById(this.parentId);
       this.subscription = this.serv.comments$.subscribe(
         value => {
           this.comments = value.filter(comments=>comments.parentId===this.parentId);
